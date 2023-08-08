@@ -16,7 +16,7 @@ export default function Home() {
       const response = await fetch(`/api/form?id=${id}`);
       const data = await response.json();
       console.log(data);
-      setFormData(data.content);
+      setFormData(data.content); 
   }
   // useEffect(()=>{
     // async function fetchForm(){

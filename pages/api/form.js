@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default async function handler(req, res) {
     const API_KEY = process.env.JOTFORM_API_KEY;
-    const id = req?.query;
+    const id = req.query.id;
     console.log(id);
 
     try{
