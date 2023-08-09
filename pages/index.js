@@ -18,15 +18,15 @@ export default function Home() {
       console.log(data);
       setFormData(data.content); 
   }
-  // useEffect(()=>{
-    // async function fetchForm(){
-    //   const response = await fetch('/api/form');
-    //   const data = response.json();
-    //   console.log(data);
-    //   setFormData(data);
-    // }
-  //   fetchForm();
-  // }, [])
+  useEffect(()=>{
+    async function fetchForm(){
+      const response = await fetch('/api/form');
+      const data = response.json();
+      console.log(data);
+      setFormData(data);
+    }
+    fetchForm();
+  }, [])
 
   return formData && (
     <>
