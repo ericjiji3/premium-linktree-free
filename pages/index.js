@@ -10,23 +10,55 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [formData, setFormData] = useState([]);
 
+  const parseForm = (answers) => {
+    answers.forEach((field) => {
+      if(typeof field.answer !== 'undefined' && typeof field.answer =='string')
+      return(
+        <div>
+          <div>Answer: {field.answer}</div>
+          <div>Text: {field.text}</div>
+        </div>
+      )
+      
+    if(typeof field.answer !== 'undefined' && typeof field.answer == 'object' && !Array.isArray(field.answer))
+      return(
+        <div>
+          <div>Answer: {field.answer.first} {field.answer.last}</div>
+          <div>Text: {field.text}</div>
+        </div>
+      )
+    if(typeof field.answer !== 'undefined' && Array.isArray(field.answer))
+      return(
+        <div>
+          {field.answer.map((assets,i)=>(
+            <div key={i}>{assets}</div>
+          ))}
+          <div>Text: {field.text}</div>
+        </div>    
+      )
+    }
+    )
+  }
+
   const fetchForm = async(e) =>{
     e.preventDefault();
       const id = e.target.submitID.value;
       const response = await fetch(`/api/form?id=${id}`);
       const data = await response.json();
-      console.log(data);
-      setFormData(data.content); 
+      const cleanData = parseForm(data.content.answers);
+      console.log(cleanData);
+      setFormData(data.content.answers); 
   }
-  useEffect(()=>{
-    async function fetchForm(){
-      const response = await fetch('/api/form');
-      const data = response.json();
-      console.log(data);
-      setFormData(data);
-    }
-    fetchForm();
-  }, [])
+  
+  // useEffect(()=>{
+  //   async function fetchForm(){
+  //     const response = await fetch('/api/form');
+  //     const data = response.json();
+  //     console.log(data);
+  //     setFormData(data);
+  //   }
+  //   fetchForm();
+  // }, [])
 
   return formData && (
     <>
@@ -42,9 +74,12 @@ export default function Home() {
             <input type="text" id="submitID" name="submitID" />
             <button type="submit">SUBMIT</button>
           </form>
-          {/* {Object.values(formData).map((item,i)=>(
-            <div key={i}>{item}</div>
-          ))} */}
+          {Object.values(formData).map((item,i)=>(
+            <div key={i}>
+              {parseForm}
+            </div>
+
+          ))}
       </main>
     </>
   )
