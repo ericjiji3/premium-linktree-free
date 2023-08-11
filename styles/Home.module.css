@@ -1,0 +1,13 @@
+.tempContainer{
+    display: block;
+}
+.tempContainer.inactive{
+    display: none;
+}
+
+.tempSubmit{
+    display: block;
+}
+.tempSubmit.inactive{
+    display: none;
+}

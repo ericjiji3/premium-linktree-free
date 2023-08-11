@@ -2,42 +2,49 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import {useState, useEffect} from 'react';
-import axios from "axios"
+import {useState, useEffect, useRef} from 'react';
+import Template1 from './templates/template1'
+import Template2 from './templates/template2'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [formData, setFormData] = useState([]);
+  const [showSubmit, setShowSubmit] = useState(false);
+  const [template1, setTemplate1] = useState(true);
+  const [template2, setTemplate2] = useState(true);
+  const temp1 = useRef();
+  const temp2 = useRef();
+
 
   const parseForm = (answers) => {
-    answers.forEach((field) => {
-      if(typeof field.answer !== 'undefined' && typeof field.answer =='string')
-      return(
-        <div>
-          <div>Answer: {field.answer}</div>
-          <div>Text: {field.text}</div>
-        </div>
-      )
+    const cleaningForm = {};
+    
+    Object.values(answers).map((field, i)=> {
       
-    if(typeof field.answer !== 'undefined' && typeof field.answer == 'object' && !Array.isArray(field.answer))
-      return(
-        <div>
-          <div>Answer: {field.answer.first} {field.answer.last}</div>
-          <div>Text: {field.text}</div>
-        </div>
-      )
-    if(typeof field.answer !== 'undefined' && Array.isArray(field.answer))
-      return(
-        <div>
-          {field.answer.map((assets,i)=>(
-            <div key={i}>{assets}</div>
-          ))}
-          <div>Text: {field.text}</div>
-        </div>    
-      )
-    }
-    )
+      if(typeof field.answer != 'undefined'){
+        
+        if(field.text == "Social Links"){
+          let convertToArr = JSON.parse(field.answer);
+          
+          cleaningForm['socials'] = convertToArr;
+          convertToArr.map((social, index) => {
+            console.log(social);
+          })
+          
+          
+        }else if(field.text == "Name"){
+          cleaningForm['firstName'] = field.answer.first;
+          cleaningForm['lastName'] = field.answer.last;
+        }else if(field.text == "Photo/Video"){
+          cleaningForm['photoVideo'] = field.answer;
+        }else{
+          cleaningForm['bio'] = field.answer;
+        }
+      }
+    })
+    console.log(cleaningForm);
+    return cleaningForm;
   }
 
   const fetchForm = async(e) =>{
@@ -45,20 +52,32 @@ export default function Home() {
       const id = e.target.submitID.value;
       const response = await fetch(`/api/form?id=${id}`);
       const data = await response.json();
+      // const dataJSON = JSON.parse(data.content.answers);
       const cleanData = parseForm(data.content.answers);
-      console.log(cleanData);
-      setFormData(data.content.answers); 
+     
+      setFormData(cleanData); 
   }
-  
-  // useEffect(()=>{
-  //   async function fetchForm(){
-  //     const response = await fetch('/api/form');
-  //     const data = response.json();
-  //     console.log(data);
-  //     setFormData(data);
-  //   }
-  //   fetchForm();
-  // }, [])
+
+  const clickTemplate = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget.id);
+    if(e.currentTarget.id == '1'){
+      setTemplate2(false);
+      setShowSubmit(true);
+      
+    }
+    if(e.currentTarget.id == '2'){
+      setTemplate1(false);
+      setShowSubmit(true);
+    }
+  }
+
+  const clickBack = (e) => {
+    e.preventDefault();
+    setTemplate1(true);
+    setTemplate2(true);
+    setShowSubmit(false);
+  }
 
   return formData && (
     <>
@@ -74,12 +93,14 @@ export default function Home() {
             <input type="text" id="submitID" name="submitID" />
             <button type="submit">SUBMIT</button>
           </form>
-          {Object.values(formData).map((item,i)=>(
-            <div key={i}>
-              {parseForm}
-            </div>
-
-          ))}
+          <div id="1" className={template1 ? styles.tempContainer : `${styles.tempContainer} ${styles.inactive}`} onClick={clickTemplate}>
+            <Template1 data={formData}/>
+          </div>
+          <div id="2" className={template2 ? styles.tempContainer : `${styles.tempContainer} ${styles.inactive}`} onClick={clickTemplate}>
+            <Template2 data={formData}/>
+          </div>
+          <div className={showSubmit ? styles.tempSubmit : `${styles.tempSubmit} ${styles.inactive}`} onClick={clickTemplate}>SUBMIT TEMPLATE</div>
+          <div className={showSubmit ? styles.tempSubmit : `${styles.tempSubmit} ${styles.inactive}`} onClick={clickBack}>GO BACK</div>
       </main>
     </>
   )
