@@ -58,6 +58,17 @@ export default function Home() {
       setFormData(cleanData); 
   }
 
+  const submitTemplate = async(e) => {
+      e.preventDefault();
+      const create = await fetch(`/api/netlifyCreate`);
+      const createData = await create.json();
+      console.log('createData:' ,createData);
+
+      const env = await fetch(`/api/netlifyEnv?id=${createData.account_id}`)
+      const envData = await env.json();
+      console.log('envData:' ,envData);
+  }
+
   const clickTemplate = (e) => {
     e.preventDefault();
     console.log(e.currentTarget.id);
@@ -99,7 +110,7 @@ export default function Home() {
           <div id="2" className={template2 ? styles.tempContainer : `${styles.tempContainer} ${styles.inactive}`} onClick={clickTemplate}>
             <Template2 data={formData}/>
           </div>
-          <div className={showSubmit ? styles.tempSubmit : `${styles.tempSubmit} ${styles.inactive}`} onClick={clickTemplate}>SUBMIT TEMPLATE</div>
+          <div className={showSubmit ? styles.tempSubmit : `${styles.tempSubmit} ${styles.inactive}`} onClick={submitTemplate}>SUBMIT TEMPLATE</div>
           <div className={showSubmit ? styles.tempSubmit : `${styles.tempSubmit} ${styles.inactive}`} onClick={clickBack}>GO BACK</div>
       </main>
     </>
