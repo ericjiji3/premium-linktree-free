@@ -1,23 +1,23 @@
+import { forwardRef } from 'react';
 
 
-
-export default function Template1(props){
-    return props.data && (
-        <div>
+const Template1 = forwardRef(({data}, ref) => {
+    return data && (
+        <div ref={ref}>
             TEMPLATE 1
             {
-              props.data.length != 0 && <div>Full Name: {props.data.firstName} {props.data.lastName}</div>
+              data.length != 0 && <div>Full Name: {data.firstName} {data.lastName}</div>
             }
             {
-              props.data.length != 0 && <div>Bio: {props.data.bio}</div>
+              data.length != 0 && <div>Bio: {data.bio}</div>
             }
-            {props.data.socials?.map((social, index) => {
+            {data.socials?.map((social, index) => {
               return(<div key={index}>
                 <div>Platform: {social.Dropdown}</div>
                 <div>URL: {social.URL}</div>
               </div>)
             })}
-            {props.data.photoVideo?.map((photo, index) => {
+            {data.photoVideo?.map((photo, index) => {
               return(<div key={index}>
                 Photo URL: {photo}
               </div>)
@@ -25,4 +25,6 @@ export default function Template1(props){
 
         </div>
     )
-}
+});
+
+export default Template1;

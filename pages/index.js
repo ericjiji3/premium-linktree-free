@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import {useState, useEffect, useRef} from 'react';
+import { renderToStaticMarkup} from 'react-dom/server';
 import Template1 from './templates/template1'
 import Template2 from './templates/template2'
 
@@ -13,7 +14,7 @@ export default function Home() {
   const [showSubmit, setShowSubmit] = useState(false);
   const [template1, setTemplate1] = useState(true);
   const [template2, setTemplate2] = useState(true);
-  const temp1 = useRef();
+  const temp1 = useRef(null);
   const temp2 = useRef();
 
 
@@ -54,7 +55,7 @@ export default function Home() {
       const data = await response.json();
       // const dataJSON = JSON.parse(data.content.answers);
       const cleanData = parseForm(data.content.answers);
-     
+      console.log(data);
       setFormData(cleanData); 
   }
 
@@ -63,11 +64,15 @@ export default function Home() {
       const create = await fetch(`/api/netlifyCreate`);
       const createData = await create.json();
       console.log('createData:' ,createData);
-
-      const env = await fetch(`/api/netlifyEnv?id=${createData.account_id}`)
+      console.log(temp1.current.innerHTML)
+      const stringHTML = temp1.current.innerHTML;
+      // console.log(component)
+      // console.log('eiraoe');
+      const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${creatData.site_id}`)
       const envData = await env.json();
       console.log('envData:' ,envData);
   }
+
 
   const clickTemplate = (e) => {
     e.preventDefault();
@@ -90,6 +95,8 @@ export default function Home() {
     setShowSubmit(false);
   }
 
+
+
   return formData && (
     <>
       <Head>
@@ -105,7 +112,7 @@ export default function Home() {
             <button type="submit">SUBMIT</button>
           </form>
           <div id="1" className={template1 ? styles.tempContainer : `${styles.tempContainer} ${styles.inactive}`} onClick={clickTemplate}>
-            <Template1 data={formData}/>
+            <Template1 data={formData} ref={temp1}/>
           </div>
           <div id="2" className={template2 ? styles.tempContainer : `${styles.tempContainer} ${styles.inactive}`} onClick={clickTemplate}>
             <Template2 data={formData}/>
