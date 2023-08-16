@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "adm-zip": "^0.5.10",
     "axios": "^1.4.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "file-saver": "^2.0.5",
+    "fs-extra": "^11.1.1",
     "jszip": "^3.10.1",
     "netlify": "^13.1.10",
     "next": "13.4.13",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "zip": "^1.2.0"
+  },
+  "devDependencies": {
+    "html-loader": "^4.2.0"
   }
 }

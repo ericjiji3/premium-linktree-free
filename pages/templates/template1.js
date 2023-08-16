@@ -1,28 +1,45 @@
 import { forwardRef } from 'react';
-
+import Image from 'next/image'
+import {useState, useEffect, useRef} from 'react';
 
 const Template1 = forwardRef(({data}, ref) => {
+  useEffect(()=>{
+    const fetchImage = async() => {
+      const response = await fetch(`./api/getImage?url=${data.photoVideo[0]}`);
+      const respData = await response.json();
+      console.log(respData);
+    }
+    fetchImage();
+  })
+  console.log(data);
     return data && (
         <div ref={ref}>
             TEMPLATE 1
             {
-              data.length != 0 && <div>Full Name: {data.firstName} {data.lastName}</div>
+              data.length != 0 && <div className="name">Full Name: {data.firstName} {data.lastName}</div>
             }
             {
               data.length != 0 && <div>Bio: {data.bio}</div>
             }
+            <div className="">
+
+            </div>
             {data.socials?.map((social, index) => {
-              return(<div key={index}>
-                <div>Platform: {social.Dropdown}</div>
-                <div>URL: {social.URL}</div>
-              </div>)
+              return(
+              <div key={index} className="socialContainer">
+                {/* <div>Platform: {social.Dropdown}</div> */}
+                <a href={social.URL}>{social.Dropdown}</a>
+                {/* <div>URL: {social.URL}</div> */}
+              </div>
+              )
             })}
             {data.photoVideo?.map((photo, index) => {
               return(<div key={index}>
-                Photo URL: {photo}
+                <Image src="https://www.jotform.com/uploads/jijijiweb/232195484018054/5673341588127755826/logo%20(1).png" width={50} height={100}/>
+                
               </div>)
             })}
-
+            <a href="https://www.jotform.com/uploads/jijijiweb/232195484018054/5673341588127755826/logo%20%281%29.png" target="_blank" title="logo (1).png">logo (1).png</a>
         </div>
     )
 });

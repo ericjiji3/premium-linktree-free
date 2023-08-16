@@ -19,9 +19,9 @@ export default function Home() {
   const temp1 = useRef(null);
   const temp2 = useRef();
 
-
   const parseForm = (answers) => {
     const cleaningForm = {};
+    console.log(answers);
     
     Object.values(answers).map((field, i)=> {
       
@@ -46,7 +46,7 @@ export default function Home() {
         }
       }
     })
-    console.log(cleaningForm);
+    
     return cleaningForm;
   }
 
@@ -73,13 +73,13 @@ export default function Home() {
       const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${createData.site_id}`)
       const envData = await env.json();
       console.log('envData:' ,envData);
-
-      const zip = new JSZip();
-      zip.file(`output.html`,fs.readFileSync('output.html'))
-      zip.generateAsync({type:"blob"}).then(content => {
-        console.log('donwloading zip');
-        saveAs(content, "example.zip");
-      })
+      
+      // const zip = new JSZip();
+      // zip.file(`output.html`,output)
+      // zip.generateAsync({type:"blob"}).then(content => {
+      //   console.log('donwloading zip');
+      //   saveAs(content, "example.zip");
+      // })
   }
 
 
