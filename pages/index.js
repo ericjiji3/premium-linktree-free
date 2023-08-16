@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import JSZip from "jszip"
+import { saveAs } from 'file-saver'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import {useState, useEffect, useRef} from 'react';
@@ -71,6 +73,13 @@ export default function Home() {
       const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${createData.site_id}`)
       const envData = await env.json();
       console.log('envData:' ,envData);
+
+      const zip = new JSZip();
+      zip.file(`output.html`,fs.readFileSync('output.html'))
+      zip.generateAsync({type:"blob"}).then(content => {
+        console.log('donwloading zip');
+        saveAs(content, "example.zip");
+      })
   }
 
 

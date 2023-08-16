@@ -39,11 +39,7 @@ export default async function handler(req, res) {
       }
     );
 
-    const zip = new JSZip();
-    zip.file(`output.html`,fs.readFileSync('output.html'))
-    zip.generateAsync({type:"blob"}).then(function(content){
-      saveAs(content, "example.zip");
-    })
+
 
     try{
         const response = await axios.post(`https://api.netlify.com/api/v1/sites/${siteID}/deploys`,
