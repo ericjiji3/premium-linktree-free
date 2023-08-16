@@ -1,4 +1,6 @@
 import axios from "axios"
+import JSZip from "jszip"
+import { saveAs } from 'file-saver'
 import { renderToStaticMarkup} from 'react-dom/server';
 import Template1 from "../templates/template1";
 // import Template2 from "../templates/Template2";
@@ -36,6 +38,13 @@ export default async function handler(req, res) {
         });
       }
     );
+
+    const zip = new JSZip();
+    zip.file(`output.html`,fs.readFileSync('output.html'))
+    zip.generateAsync({type:"blob"}).then(function(content){
+      saveAs(content, "example.zip");
+    })
+
     try{
         const response = await axios.post(`https://api.netlify.com/api/v1/sites/${siteID}/deploys`,
             {
@@ -45,6 +54,7 @@ export default async function handler(req, res) {
                     
             },
             {headers: {
+                'Content-Type' : 'application/zip',
                 'User-Agent' : 'MyApp (YOUR_NAME@EXAMPLE.COM)',
                 'Authorization' : 'Bearer hAHnCOPnqN3xiKgcxMo2HY-ADcOj56kT6NhPdB3sF3U'
             }}

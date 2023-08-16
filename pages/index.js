@@ -68,7 +68,7 @@ export default function Home() {
       const stringHTML = temp1.current.innerHTML;
       // console.log(component)
       // console.log('eiraoe');
-      const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${creatData.site_id}`)
+      const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${createData.site_id}`)
       const envData = await env.json();
       console.log('envData:' ,envData);
   }
