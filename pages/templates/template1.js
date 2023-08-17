@@ -3,14 +3,7 @@ import Image from 'next/image'
 import {useState, useEffect, useRef} from 'react';
 
 const Template1 = forwardRef(({data}, ref) => {
-  useEffect(()=>{
-    const fetchImage = async() => {
-      const response = await fetch(`./api/getImage?url=${data.photoVideo[0]}`);
-      const respData = await response.json();
-      console.log(respData);
-    }
-    fetchImage();
-  })
+
   console.log(data);
     return data && (
         <div ref={ref}>
@@ -28,7 +21,7 @@ const Template1 = forwardRef(({data}, ref) => {
               return(
               <div key={index} className="socialContainer">
                 {/* <div>Platform: {social.Dropdown}</div> */}
-                <a href={social.URL}>{social.Dropdown}</a>
+                <a className={social.Dropdown} href={social.URL}>{social.Dropdown}</a>
                 {/* <div>URL: {social.URL}</div> */}
               </div>
               )
