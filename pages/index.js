@@ -21,7 +21,7 @@ export default function Home() {
 
   const parseForm = (answers) => {
     const cleaningForm = {};
-    console.log(answers);
+    console.log('parsing: ', answers);
     
     Object.values(answers).map((field, i)=> {
       
@@ -41,6 +41,10 @@ export default function Home() {
           cleaningForm['lastName'] = field.answer.last;
         }else if(field.text == "Photo/Video"){
           cleaningForm['photoVideo'] = field.answer;
+        }else if(field.text == "Phone Number"){
+          cleaningForm['phone'] = field.answer.full;
+        }else if(field.text == "Email"){
+          cleaningForm['email'] = field.answer;
         }else{
           cleaningForm['bio'] = field.answer;
         }
@@ -57,7 +61,7 @@ export default function Home() {
       const data = await response.json();
       // const dataJSON = JSON.parse(data.content.answers);
       const cleanData = parseForm(data.content.answers);
-      console.log(data);
+      
       setFormData(cleanData); 
   }
 
@@ -66,11 +70,10 @@ export default function Home() {
       const create = await fetch(`/api/netlifyCreate`);
       const createData = await create.json();
       console.log('createData:' ,createData);
-      console.log(temp1.current.innerHTML)
       const stringHTML = temp1.current.innerHTML;
-      // console.log(component)
+      // console.log(stringHTML);
       // console.log('eiraoe');
-      const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${createData.site_id}`)
+      const env = await fetch(`/api/createHTML?stringHTML=${stringHTML}&siteID=${createData.site_id}&template=1`)
       const envData = await env.json();
       console.log('envData:' ,envData);
       

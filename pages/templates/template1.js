@@ -2,37 +2,63 @@ import { forwardRef } from 'react';
 import Image from 'next/image'
 import {useState, useEffect, useRef} from 'react';
 
-const Template1 = forwardRef(({data}, ref) => {
 
+const Template1 = forwardRef(({data}, ref) => {
   console.log(data);
     return data && (
         <div ref={ref}>
+          <div className="temp1Container">
             TEMPLATE 1
             {
-              data.length != 0 && <div className="name">Full Name: {data.firstName} {data.lastName}</div>
-            }
-            {
-              data.length != 0 && <div>Bio: {data.bio}</div>
-            }
-            <div className="">
-
-            </div>
-            {data.socials?.map((social, index) => {
-              return(
-              <div key={index} className="socialContainer">
-                {/* <div>Platform: {social.Dropdown}</div> */}
-                <a className={social.Dropdown} href={social.URL}>{social.Dropdown}</a>
-                {/* <div>URL: {social.URL}</div> */}
-              </div>
-              )
-            })}
-            {data.photoVideo?.map((photo, index) => {
-              return(<div key={index}>
-                <Image src="https://www.jotform.com/uploads/jijijiweb/232195484018054/5673341588127755826/logo%20(1).png" width={50} height={100}/>
+              data.length != 0 && 
+              <div className="hero">
+                <div className="overlay">
+                  <img className="imageBanner" src={data.photoVideo[0]}></img>
+                </div>  
                 
-              </div>)
-            })}
-            <a href="https://www.jotform.com/uploads/jijijiweb/232195484018054/5673341588127755826/logo%20%281%29.png" target="_blank" title="logo (1).png">logo (1).png</a>
+                <div className="nameContainer">
+                  <div className="firstName"><b>{data.firstName}</b></div>
+                  <div className="lastName"><b>{data.lastName}</b></div>
+                  <div className="bio"><b>{data.bio}</b></div>
+                </div>  
+                <div className="phoneEmail">
+                  <a className="phoneContainer" href={`tel: ${data.phone.replace(/([()])/g, '').replace(/\s+/g, '-')}`}>
+                    <span className="emoji">📲</span>
+                    <span><b>Contact</b></span>
+                  </a>
+                  <a className="mailContainer" href={`mailto: ${data.email}`}>
+                    <span className="emoji">📧</span>
+                    <span><b>Email</b></span>
+                  </a>
+                </div>
+                {/* {data.photoVideo?.map((photo, index) => {
+                  console.log('photo: ', photo);
+                  return(
+                  <div key={index}>
+                    <img src={photo} alt="oops"/>
+                    
+                  </div>)
+                })} */}
+              </div>
+              
+            }
+            <div className="socialLinks">
+              {data.socials?.map((social, index) => {
+                return(
+                <div key={index} className="socialContainer">
+                  {/* <div>Platform: {social.Dropdown}</div> */}
+                  <a href={social.URL}>
+                    <div className={social.Dropdown}></div>
+                    <span><b>{social.Dropdown}</b></span>
+                  </a>
+                  {/* <div>URL: {social.URL}</div> */}
+                </div>
+                )
+              })}
+            </div>
+           
+            
+          </div>
         </div>
     )
 });

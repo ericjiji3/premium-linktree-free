@@ -11,56 +11,43 @@ export default async function handler(req, res) {
     // const API_KEY = process.env.JOTFORM_API_KEY;
     const stringHTML = req.query.stringHTML;
     const siteID = req.query.siteID;
-
+    console.log(req.query);
     var fs = require("fs-extra");
     console.log(" Writing into an file ");
-    let htmlWDoc = "<!DOCTYPE html>" + stringHTML;
-
-    // Sample.txt is an empty file
-    fs.writeFile(
-      "index.html",
-      htmlWDoc,
-      function (err) {
-        if (err) {
-          return console.error(err);
-        }
-      
-        // If no error the remaining code executes
-        console.log(" Finished writing ");
-        console.log("Reading the data that's written");
-        
-        // Reading the file
-        fs.readFile("index.html", function (err, data) {
+    if(req.query.template == '1'){
+      let styleSheet = "<head><link rel='stylesheet' href='template1.css'></head>";
+      let htmlWDoc = "<!DOCTYPE html>" + styleSheet + stringHTML;
+      console.log(htmlWDoc);
+      // Sample.txt is an empty file
+      fs.writeFile(
+        "index.html",
+        htmlWDoc,
+        function (err) {
           if (err) {
             return console.error(err);
           }
-          console.log("Data read : " + data.toString());
-            
-        });
-        var AdmZip = require("adm-zip");
-        var zip = new AdmZip();
-        zip.addLocalFile("index.html", 'website');
-        zip.writeZip('website.zip');
+        
+          // If no error the remaining code executes
+          console.log(" Finished writing ");
+          console.log("Reading the data that's written");
+          
+          // Reading the file
+          fs.readFile("index.html", function (err, data) {
+            if (err) {
+              return console.error(err);
+            }
+            console.log("Data read : " + data.toString());
+              
+          });
+          var AdmZip = require("adm-zip");
+          var zip = new AdmZip();
+          zip.addLocalFile("index.html", 'website');
+          zip.addLocalFile("template1.css", "website");
+          zip.writeZip('website.zip');
 
-        }
-    );
-
-    // Get the list of files to zip
-    // const files = ['output.html'];
-
-    // // Create a new zip file
-    // let zip = fs.createWriteStream('website.zip');
-
-    // // Add the files to the zip file
-    // files.forEach(file => {
-    //   zip.writeFile(file, {
-    //     read: fs.readFileSync(file)
-    //   });
-    // });
-
-    // // Close the zip file
-    // zip.close();
-
+          }
+      );
+    }
     
     
   try{
@@ -90,28 +77,5 @@ export default async function handler(req, res) {
       res.status(500).json({message: error});
   }
     
-    // const zip = new JSZip();
-    // zip.file(`output.html`, fs.readFileSync('output.html'));
-    // zip.generateAsync({type:"blob"}).then(content => {
-      
-    //   saveAs(content, "example.zip");
-    //   try{
-    //     const response = axios.post(`https://api.netlify.com/api/v1/sites/${siteID}/deploys`,
-    //         content,
-    //         {headers: {
-    //             'Content-Type' : 'application/zip',
-    //             'User-Agent' : 'MyApp (YOUR_NAME@EXAMPLE.COM)',
-    //             'Authorization' : 'Bearer hAHnCOPnqN3xiKgcxMo2HY-ADcOj56kT6NhPdB3sF3U'
-    //         }}
-    //         );
-        
-    //     const data = response.data;
-    //     res.status(200).json(data);
-    // }catch(error){
-    //     res.status(500).json({message: error});
-    // }
-    // })
-
-   
     
   }
