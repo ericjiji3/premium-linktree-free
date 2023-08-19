@@ -78,4 +78,5 @@ const Template3 = forwardRef(({data}, ref) => {
     )
 });
 
+Template3.displayName = 'Template3';
 export default Template3;

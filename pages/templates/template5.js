@@ -66,4 +66,5 @@ const Template5 = forwardRef(({data}, ref) => {
     )
 });
 
+Template5.displayName = 'Template5';
 export default Template5;
