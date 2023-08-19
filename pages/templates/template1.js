@@ -11,13 +11,19 @@ const Template1 = forwardRef(({data}, ref) => {
             {
               data.length != 0 && 
               <div className="hero">
-                <div className="overlay">
-                  <img className="imageBanner" src={data.photoVideo[0]}></img>
-                </div>  
+                <div className="shooting-stars"></div>
                 
                 <div className="nameContainer">
-                  <div className="firstName"><b>{data.firstName}</b></div>
-                  <div className="lastName"><b>{data.lastName}</b></div>
+                  <div className="flex">
+                    <div className="fullName">
+                      <div className="firstName"><b>{data.firstName}</b></div>
+                      <div className="lastName"><b>{data.lastName}</b></div>
+                    </div>
+                    <div className="imageContainer">
+                      <img className="image" src={data.photoVideo[0]}></img>
+                    </div> 
+                  </div>
+                  
                   <div className="bio">{data.bio}</div>
                 </div>  
                 <div className="phoneEmail">

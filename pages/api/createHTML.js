@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     
     if(req.query.template == '1'){
       console.log('doing 1');
-      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='stylesheet' href='template1.css'></head>";
+      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='icon' type='image/x-icon' href='logo.png'><link rel='stylesheet' href='template1.css'></head>";
       let htmlWDoc = "<!DOCTYPE html>" + styleSheet + stringHTML + "</html>";
       console.log(htmlWDoc);
       // Sample.txt is an empty file
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
       );
     }
     if(req.query.template == '2'){
-      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='stylesheet' href='template2.css'></head>";
+      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='icon' type='image/x-icon' href='logo.png'><link rel='stylesheet' href='template2.css'></head>";
       let htmlWDoc = "<!DOCTYPE html>" + styleSheet + stringHTML + "</html>";
       console.log(htmlWDoc);
       // Sample.txt is an empty file
@@ -87,7 +87,7 @@ export default async function handler(req, res) {
       );
     }
     if(req.query.template == '3'){
-      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='stylesheet' href='template3.css'></head>";
+      let styleSheet = "<head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><title>Jijitree</title><link rel='icon' type='image/x-icon' href='logo.png'><link rel='stylesheet' href='template3.css'></head>";
       let htmlWDoc = "<!DOCTYPE html>" + styleSheet + stringHTML + "</html>";
       console.log(htmlWDoc);
       // Sample.txt is an empty file

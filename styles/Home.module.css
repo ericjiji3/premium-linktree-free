@@ -1,3 +1,8 @@
+
+.main{
+    position: relative;
+    font-family: 'Clash Display', sans-serif;
+}
 .hero{
     padding: 25px 50px;
     background-color: rgb(212, 212, 212);
@@ -12,25 +17,51 @@
     display: flex;
     align-items: center;
 }
+.hero .topContainer .col .flex h2{
+    font-size: 3.5rem;
+    margin: 10px 0;
+}
+.hero .topContainer .col .flex .logo{
+    margin-left: 10px;   
+}
+.hero .topContainer .col .subheading{
+    font-size: 1.75rem;
+    margin: 5px 0 0 0;
+    font-weight: bold;
+}
+.hero .topContainer .col .subsubHeading{
+    font-size: 1.25rem;
+    margin: 5px 0;
+    font-weight: normal;
+}
+.hero .topContainer form{
+    margin-top: 10px;
+}
 .hero .topContainer form label{
     display: block;
     text-decoration: underline;
     margin-bottom: 5px;
+    font-size: 1.25rem;
 }
 .hero .topContainer form input{
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid #c9c9c9;
+    border: 2px solid #000000;
     margin-right: 5px;
     background-color: #ffffff;
+    font-size: 1.25rem;
+}
+.hero .topContainer form input:focus-visible{
+    outline: none;
 }
 .hero .topContainer form button{
     padding: 10px;
     background-color: #000000;
     color: #ffffff;
     border-radius: 5px;
-    border: 2px solid #c9c9c9;
+    border: 2px solid #000000;
     transition: 0.15s all ease-in-out;
+    font-size: 1.25rem;
 }
 .hero .topContainer form button:hover{
     cursor: pointer;
@@ -41,6 +72,9 @@
 }
 .hero .howTitle{
     text-decoration: underline;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    
 }
 .hero .stepsContainer{
     display: flex;
@@ -52,6 +86,7 @@
 .hero .stepsContainer .step .stepNumber{
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 1.25rem;
 }
 .hero .stepsContainer .step .stepContent{
     border: 2px solid #000000;
@@ -61,6 +96,7 @@
     box-shadow: 3px 3px 0px #000000;
     display: block;
     background-color: #ffffff;
+    font-size: 1.25rem;
 }
 .hero .stepsContainer .step .stepContent span{
     display: block;
@@ -68,6 +104,7 @@
 .hero .stepsContainer .step .stepContent img{
     display: block;
     margin: auto;
+    object-fit: contain;
 }
 
 .tempNav{
@@ -75,13 +112,47 @@
     justify-content: space-between;
 }
 .tempNav .navItem{
+    font-size: 1.25rem;
     display: block;
     width: 100%;
     text-align: center;
-    padding: 15px 0;
+    padding: 15px 0 35px 0;
     background-color: #000000;
     color: #ffffff;
     border-right: 1.5px solid #ffffff;
+    position: relative;
+}
+.tempNav .navItem:after{
+    position: absolute;
+  bottom: 20px;
+  left: 40%;
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 0.15em solid #ffffff;
+  border-top: 0.15em solid #ffffff;
+  transform: rotate(135deg);
+  margin-right: 0.5em;
+  margin-left: 1.0em;
+}
+.tempNav .navItem:hover{
+    cursor: pointer;
+}
+.tempNav .navItem:hover::after{
+    
+    animation: 1s upDown ease-in-out infinite;
+}
+@keyframes upDown {
+    0%{
+       bottom: 20px;
+    }
+    50%{
+        bottom: 15px;
+    }
+    100%{
+        bottom: 20px;
+    }
 }
 .tempNav .navItem:last-child{
     border-right: none;
@@ -95,7 +166,124 @@
 
 .tempSubmit{
     display: block;
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000000;
+    border: 1.5px solid #ffffff;
+    padding: 15px;
+    color: #ffffff;
+    border-radius: 5px;
+    z-index: 5;
+    opacity: 1;
+    transition: 0.3s all ease-in-out;
+    width: 200px;
+    text-align: center;
+}
+.tempSubmit .loader{
+    display: none;
+}
+.tempSubmit .succ{
+    display: none;
+}
+.tempSubmit:hover{
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1.5px solid #000000;
+    color: #000000;
+    transition: 0.3s all ease-in-out;
 }
 .tempSubmit.inactive{
+    opacity: 0;
+    z-index: -1;
+    transition: 0.3s all ease-in-out;
+}
+.tempSubmit.loading .text{
     display: none;
+}
+.tempSubmit.loading{
+    width: 100px;
+    transition: 0.3s all ease-in-out;
+}
+.tempSubmit.loading .loader{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 2px solid #FFF;
+    border-right: 2px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+
+}
+.tempSubmit.loading .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border-bottom: 2px solid #FF3D00;
+    border-left: 2px solid transparent;
+}
+@keyframes rotation {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+} 
+.tempSubmit.success .text{
+    display: none;
+}
+.tempSubmit.success .loader{
+    display: none;
+}
+.tempSubmit.success .succ{
+    display: block;
+    opacity: 0;
+    animation: fadeIn 1s linear forwards;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@media(max-width: 500px){
+    .hero .topContainer{
+        display: block;
+       
+    }
+    .hero .topContainer .col:has(form){
+        margin-top: 25px;
+    }
+    .hero .topContainer .col form input{
+        margin: 10px 0;
+    }
+    .hero .stepsContainer{
+        display: block;
+    }
+    .hero .stepsContainer .step{
+        margin: 10px 0;
+    }
+    .tempNav{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .tempNav .navItem{
+        border: 1.5px solid #ffffff;
+        flex: 1 0 25%;
+        padding: 15px 0;
+    }
+    .tempNav .navItem::after{
+        display: none;
+    }
 }

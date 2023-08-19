@@ -16,13 +16,13 @@ const Template2 = forwardRef(({data}, ref) => {
                         {
                             data.phone && 
                             <a className="phoneContainer" href={`tel: ${data.phone.replace(/([()])/g, '').replace(/\s+/g, '-')}`}>
-                                <span>📲<b>Call</b></span>
+                                <span>📲  <b>Call</b></span>
                             </a>
                         }
                         {
                             data.email && 
                             <a className="mailContainer" href={`mailto: ${data.email}`}>
-                                <span>📧<b>Email</b></span>
+                                <span>📧  <b>Email</b></span>
                             </a>
                         }
                         

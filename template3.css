@@ -7,7 +7,7 @@ body{
     display: flex;
     flex-direction: row-reverse;
     font-family: 'Roboto', sans-serif;
-   
+   min-height: 100vh;
 }
 .temp3Container .hero{
     width: 50%;
