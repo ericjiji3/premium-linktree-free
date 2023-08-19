@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
 body{
     margin: 0;
+    
 }
 .temp1Container{
     /* background-color: blue; */
     background-color: #f9f9f9;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 .temp1Container .phoneEmail{
     display: flex;
@@ -34,7 +40,7 @@ body{
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.15);
     z-index: 1;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -62,7 +68,7 @@ body{
 .temp1Container .phoneContainer, .temp1Container .mailContainer{
     font-size: 15px;
     padding: 10px 20px;
-    width: 200px;
+    width: 100%;
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(5px);
     border-radius: 5px;
@@ -71,6 +77,17 @@ body{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
     position: relative;
     z-index: 1;
+    transition: all 0.15s ease-in;
+}
+.temp1Container .phoneContainer:hover , .temp1Container .mailContainer:hover{
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.15s ease-in;
+}
+.temp1Container .phoneContainer{
+    margin-right: 5px;
+}
+.temp1Container .mailContainer{
+    margin-left: 5px;
 }
 .temp1Container .phoneContainer span, .temp1Container .mailContainer span{
     display: block;
@@ -88,7 +105,7 @@ body{
     transition: 0.15s all ease-in;
 }
 .temp1Container .socialContainer:hover{
-    transform: scale(1.025);
+    transform: scale(1.02);
     transition: 0.15s all ease-in;
 }
 .temp1Container .socialContainer a{
@@ -132,8 +149,22 @@ body{
 }
 .temp1Container .socialContainer a .TikTok{
     width: 25px;
-    height: 28px;
+    height: 30px;
     margin-right: 10px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 293768 333327' shape-rendering='geometricPrecision' text-rendering='geometricPrecision' image-rendering='optimizeQuality' fill-rule='evenodd' clip-rule='evenodd'%3E%3Cpath d='M204958 0c5369 45832 32829 78170 77253 81022v43471l-287 27V87593c-44424-2850-69965-30183-75333-76015l-47060-1v192819c6791 86790-60835 89368-86703 56462 30342 18977 79608 6642 73766-68039V0h58365zM78515 319644c-26591-5471-50770-21358-64969-44588-34496-56437-3401-148418 96651-157884v54345l-164 27v-40773C17274 145544 7961 245185 33650 286633c9906 15984 26169 27227 44864 33011z' fill='%2326f4ee'/%3E%3Cpath d='M218434 11587c3505 29920 15609 55386 35948 70259-27522-10602-43651-34934-47791-70262l11843 3zm63489 82463c3786 804 7734 1348 11844 1611v51530c-25770 2537-48321-5946-74600-21749l4034 88251c0 28460 106 41467-15166 67648-34260 58734-95927 63376-137628 35401 54529 22502 137077-4810 136916-103049v-96320c26279 15803 48830 24286 74600 21748V94050zm-171890 37247c5390-1122 11048-1985 16998-2548v54345c-21666 3569-35427 10222-41862 22528-20267 38754 5827 69491 35017 74111-33931 5638-73721-28750-49999-74111 6434-12304 18180-18959 39846-22528v-51797zm64479-119719h1808-1808z' fill='%23fb2c53'/%3E%3Cpath d='M206590 11578c5369 45832 30910 73164 75333 76015v51528c-25770 2539-48321-5945-74600-21748v96320c206 125717-135035 135283-173673 72939-25688-41449-16376-141089 76383-155862v52323c-21666 3569-33412 10224-39846 22528-39762 76035 98926 121273 89342-1225V11577l47060 1z'/%3E%3C/svg%3E");
     background-size: cover;
+}
+@media(max-width: 500px){
+    .temp1Container .hero .nameContainer{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .temp1Container .hero .phoneEmail{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .temp1Container .socialContainer{
+        margin-left: 25px;
+        margin-right: 25px;
+    }
 }

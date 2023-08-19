@@ -8,7 +8,6 @@ const Template1 = forwardRef(({data}, ref) => {
     return data && (
         <div ref={ref}>
           <div className="temp1Container">
-            TEMPLATE 1
             {
               data.length != 0 && 
               <div className="hero">
@@ -19,7 +18,7 @@ const Template1 = forwardRef(({data}, ref) => {
                 <div className="nameContainer">
                   <div className="firstName"><b>{data.firstName}</b></div>
                   <div className="lastName"><b>{data.lastName}</b></div>
-                  <div className="bio"><b>{data.bio}</b></div>
+                  <div className="bio">{data.bio}</div>
                 </div>  
                 <div className="phoneEmail">
                   <a className="phoneContainer" href={`tel: ${data.phone.replace(/([()])/g, '').replace(/\s+/g, '-')}`}>

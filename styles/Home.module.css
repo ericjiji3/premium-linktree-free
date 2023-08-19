@@ -1,3 +1,91 @@
+.hero{
+    padding: 25px 50px;
+    background-color: rgb(212, 212, 212);
+}
+.hero .topContainer{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+   
+}
+.hero .topContainer .col .flex{
+    display: flex;
+    align-items: center;
+}
+.hero .topContainer form label{
+    display: block;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+.hero .topContainer form input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #c9c9c9;
+    margin-right: 5px;
+    background-color: #ffffff;
+}
+.hero .topContainer form button{
+    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 2px solid #c9c9c9;
+    transition: 0.15s all ease-in-out;
+}
+.hero .topContainer form button:hover{
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    color: #000000;
+    transition: 0.15s all ease-in-out;
+}
+.hero .howTitle{
+    text-decoration: underline;
+}
+.hero .stepsContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.hero .stepsContainer .step{
+    flex: 0 0 24%;
+}
+.hero .stepsContainer .step .stepNumber{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.hero .stepsContainer .step .stepContent{
+    border: 2px solid #000000;
+    border-radius: 5px;
+    height: 85%;
+    padding: 10px;
+    box-shadow: 3px 3px 0px #000000;
+    display: block;
+    background-color: #ffffff;
+}
+.hero .stepsContainer .step .stepContent span{
+    display: block;
+}
+.hero .stepsContainer .step .stepContent img{
+    display: block;
+    margin: auto;
+}
+
+.tempNav{
+    display: flex;
+    justify-content: space-between;
+}
+.tempNav .navItem{
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    background-color: #000000;
+    color: #ffffff;
+    border-right: 1.5px solid #ffffff;
+}
+.tempNav .navItem:last-child{
+    border-right: none;
+}
 .tempContainer{
     display: block;
 }
