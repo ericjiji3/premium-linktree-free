@@ -24,9 +24,9 @@ const Template4 = forwardRef(({data}, ref) => {
                   <img className="imageBanner" src={data.photoVideo[0]}></img>
                 </div>  
                 <div className="nameContainer">
-                  <span>Welcome to <b>{data.firstName} {data.lastName}'s links</b></span>
+                  <span>Welcome to <b>{data.firstName} {data.lastName}&apos;s links</b></span>
                   <div className="darkMode" onClick={toggle}>
-                                    
+
                   </div>
                   
                 </div>  

@@ -88,18 +88,13 @@ export default function Home() {
     
     return cleaningForm;
   }
-  // setTemplate1(true);
-  // setTemplate2(true);
-  // setTemplate3(true);
-  // setTemplate4(true);
-  // setTemplate5(true);
+
   const fetchForm = async(e) =>{
     e.preventDefault();
     
       const id = e.target.submitID.value;
       const response = await fetch(`/api/form?id=${id}`);
       const data = await response.json();
-      // const dataJSON = JSON.parse(data.content.answers);
       const cleanData = parseForm(data.content.answers);
       
       setFormData(cleanData); 
@@ -223,7 +218,7 @@ export default function Home() {
             <div className={styles.col}>
               <div className={styles.flex}>
                 <h2>JIJITREE</h2>
-                <Image className={styles.logo} src={Logo} width={50} height={50}/>
+                <Image className={styles.logo} src={Logo} width={50} height={50} alt="oops"/>
               </div>
               
               <h3 className={styles.subheading}>Put all of your social media links on one page!</h3>
@@ -246,7 +241,7 @@ export default function Home() {
               </div>
               <div className={styles.stepContent}>
                 <span>Scan the QR code and fill out the form.</span>
-                <Image src={Qr} width={175} height={175}/>
+                <Image src={Qr} width={175} height={175} alt="oops"/>
               </div>
               
             </div>
@@ -256,7 +251,7 @@ export default function Home() {
             </div>
             <div className={styles.stepContent}>
               <span>Enter the submission ID of the form.</span>
-              <Image src={Step2} width={175} height={175}/>
+              <Image src={Step2} width={175} height={175} alt="oops"/>
             </div> 
             </div>
             <div className={styles.step}>
@@ -265,7 +260,7 @@ export default function Home() {
               </div>
               <div className={styles.stepContent}>
                 <span>Pick a Jijitree template.</span>
-                <Image src={TempEx} width={175} height={175}/>
+                <Image src={TempEx} width={175} height={175} alt="oops"/>
               </div>
 
             </div>
@@ -275,7 +270,7 @@ export default function Home() {
               </div>
               <div className={styles.stepContent}>
               <span>Submit the template, and your personalized Jijitree website will be published!</span>
-              <Image src={Success} width={175} height={175}/>
+              <Image src={Success} width={175} height={175} alt="oops"/>
               </div>
               
             </div>
