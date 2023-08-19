@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {useState, useEffect, useRef} from 'react';
 
 
-const template1 = forwardRef(({data}, ref) => {
+const Template1 = forwardRef(({data}, ref) => {
   console.log(data);
     return data && (
         <div ref={ref}>
@@ -68,4 +68,5 @@ const template1 = forwardRef(({data}, ref) => {
     )
 });
 
-export default template1;
+Template1.displayName = 'Template1';
+export default Template1;
